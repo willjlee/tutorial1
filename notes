@@ -1,0 +1,41 @@
+Notes: Tutorial 1: HelloWorldAPI
+http://www.asp.net/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api
+
+Covers basic back-end and front-end functionality for webAPI using C#, jQuery, etc.
+
+----
+
+Model: M in MVC, the model. Data handling. Usually handles DB stuff; in this example it uses an array instead.
+Controller: C in MVC. middleman between model and view.
+  Note: MVC controllers serve sites while WebAPI controllers serve data. (Controller and ApiController classes)
+View: The served page. What the user sees. handles display of data conveyed via controller from the model.
+
+Web API can return data in JSON or XML; switches to accommodate requesting program.
+
+Methods in API controllers map to URIs:
+GetAllProducts 		::	/api/products
+GetProductById 		::	/api/products/id
+GetProductsByCategory 	::	/api/products/?category=category OR /api/products?category=category
+
+In this example, AJAX getJSON method is used to request data and update display.
+
+
+
+From the tutorial page:
+
+ For each HTTP message, the ASP.NET Web API framework decides which controller receives the request by consulting a route table. When you create a new Web API project, the project contains a default route that looks like this:
+
+/api/{controller}/{id}
+
+The {controller} and {id} portions are placeholders. When the framework sees a URI that matches this pattern, it looks for a controller method to invoke, as follows:
+
+    {controller} is matched to the controller name.
+    The HTTP request method is matched to the method name. (This rule applies only to GET, POST, PUT, and DELETE requests.)
+    {id}, if present, is matched to a method parameter named id.
+    Query parameters are matched to parameter names when possible
+
+Here are some example requests, and the action that results from each, given our current implementation.
+URI 	HTTP Method 	Action
+/api/products 	GET 	GetAllProducts()
+/api/products/1 	GET 	GetProductById(1)
+/api/products?category=hardware 	GET 	GetProductsByCategory("hardware")
